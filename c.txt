@@ -1,0 +1,499 @@
+C has 32 keywords.
+
+C DOES NOT SUPPORT OBJECT ORIENTED PROGRAMMING.NO CLASSES,NO INHERITANCE ETC
+C IS PROCEDURAL ORIENTED PROGRAMMING. 
+
+
+DO WHILE LOOP:
+
+do while loop will execute at least once 
+
+*********************************
+do{
+
+//code to be executed
+
+update value;
+}
+while(test condition);
+**********************************
+
+
+BREAK STATEMENT:
+
+The break statement can also be used to jump out of a loop. Also to jump out of switch statement.
+
+CONTINUE STATEMENT:
+
+The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+
+
+FORMAT SPECIFIERS: 
+%d - int
+%c - char
+%s - string- array of character
+%lf - double
+%lu - unsigned long
+%p - memory address.
+%u - unsigned int.
+
+STRINGS:
+
+Character type arrays.
+if you want to print only  a character of a string then us %c format specifier
+
+***************************************/
+ Assigning a string literal without size:
+
+#include <stdio.h>
+
+int main() {
+  char greetings[] = "Hello World!";
+  printf("%s", greetings);
+ 
+  return 0;
+}
+****************************************/
+
+
+*************************
+another way to input a string:
+gets() function:
+char str[20];
+   gets(str);
+   printf("%s", str);
+*************************
+
+
+*******************************
+one more way to input a string:
+Using pointers:
+char *ptr;
+char str[20];
+ptr = str;
+scanf("%s", ptr);
+printf("%s\n", ptr);
+*****************////////////////////////////
+
+ Using %[^\n]%*c inside scanf  //////  %[^\n]%*c
+   char str[20];
+   scanf("%[^\n]%*c", str);
+   printf("%s", str);
+********************************
+
+looping through strings:
+***************************************//
+#include <stdio.h>
+
+int main() {
+  char carName[] = "Volvo";
+  int i;
+  
+  for (i = 2; i < 5; i++) {
+    printf("%c\n", carName[i]);
+  }
+
+  return 0;
+}
+****************************************//
+
+
+Another way to create strings: Assigning character by character with size:
+**********************************/
+#include <stdio.h>
+
+int main() {
+  char greetings[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};
+  
+  printf("%s\n", greetings);
+  return 0;
+}
+**********************************/
+\0 - null terminating character .It tells C that this is the end of the string.
+
+length = strlen(str);------>To calculate length of string.
+**********************************************************************************
+
+The sequence \"  inserts a double quote in a string:
+char txt[] = "We are the so-called \"Vikings\" from the north.";
+//output:  We are the so-called "Vikings" from the north.
+
+The sequence \'  inserts a single quote in a string:
+ char txt[] = "It\'s alright.";
+//output: It's alright.
+
+The sequence \\  inserts a single backslash in a string:
+char txt[] = "The character \\ is called backslash.";
+//output: The character \ is called backslash.
+
+\t: tab
+space between string
+
+
+STRING FUNCTIONS:
+
+to use them #include<string.h>
+
+strlen() - To get length of a string ------ sizeof();// does not count \0;
+sizeof() also includes \0 as a character.
+********************************
+
+char alpha[]="sdgjf";
+printf("%i",strlen(alpha)); //5
+printf("%i",sizeof(alpha)); //6
+*********************************
+
+sizeof will always return the memory size (in bytes), and not the actual string length
+char alphabet[50] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+printf("%d", strlen(alphabet));   // 26
+printf("%d", sizeof(alphabet));   // 50
+*******************************************
+
+
+Concatinating 2 strings:
+
+strcat()
+  char str1[20] = "Hello";
+  char str2[] = "World!";
+  strcat(str1, str2);
+  printf("%s", str1);//HelloWorld//no space in between //so its better to give space in th first string 
+**********************************
+
+
+To copy the value of one string to another:
+
+ strcpy() 
+    char str1[20] = "Hello World!";
+  char str2[20];
+  strcpy(str2, str1);// pehli wali argument change hoti hai
+  printf("%s", str2); //Hello World
+************************************
+
+
+To compare two strings:
+
+strcmp()
+  char str1[] = "Helloooo";
+  char str2[] = "Hello";
+  char str3[] = "Hi";
+char str4[]="Hi";
+  printf("%d\n", strcmp(str1, str2));//111//+ve value=>1st string is greater than 2nd.
+  printf("%d\n", strcmp(str1, str3));//-4//-ve value=>2nd string is greater than 1st.
+printf("%d\n",strcmp(str3,str4));//0//both equal
+ASCII OF STRINGS ARE COMPARED.ASCII OF 1ST ARGUMENT IS SUBTRACTED FROM 2ND
+*************************************
+
+
+USER INPUT scanf():
+
+takes two arguments: the format specifier of the variable and the reference operator  which stores the memory address of the variable.
+scanf("%d", &myNum);
+Taking string as an input:
+  char ch[100];
+  scanf("%s",ch);
+  printf("Hello %s\n",ch);// Hello DEVANSH
+********************************
+scanf() inputs a single word only. Use fgets() to input a complete sentence,
+fgets includes 3 arguments:  the name of the string variable, sizeof(string_name), and stdin.
+**********************************************
+fgets(fullName, sizeof(fullName), stdin);
+printf("Hello %s", fullName);
+*********************************************
+
+
+MEMORY ADDRESS:
+%p format specifier is used.
+
+ int myAge = 43;
+  printf("%p", &myAge); //0x7ffe5367e044 
+***************************************The memory address is in hexadecimal form (0x..)
+
+
+POINTERS:
+A pointer variable points to a data type (like int) of the same type, and is created with the * operator.
+************************************************************/
+  int myAge = 43;
+  int* ptr = &myAge;
+printf("%d",myAge);
+printf("%p",&myAge);//memory address of myAge
+printf("%p",ptr);//memory address of myAge
+printf("%d",*ptr);//value at address in ptr i.e.myAge
+**************************************************************/
+
+
+FUNCTIONS:
+
+
+actual parameter/argument----->Function call
+
+Arguments and parameters:
+***************************************************************//
+void myFunction(char name[]) {// Here name is a parameter 
+  printf("Hello %s\n", name);
+}
+
+int main() {
+  myFunction("Liam");
+  myFunction("Jenny");
+  myFunction("Anja");
+  return 0;//Liam,Jenny and Anja are arguments
+}
+******************************************************//
+
+
+Passing arrays as function arguments:
+
+************************************/
+void myFunction(int myNumbers[5]) {
+  for (int i = 0; i < 5; i++) {
+    printf("%d\n", myNumbers[i]);
+  }
+}
+
+int main() {
+  int myNumbers[5] = {10, 20, 30, 40, 50};
+  myFunction(myNumbers);
+************************************/
+During function declaration array is passed as --> myNumbers[5]; --> void myFunction(int myNumbers[5])
+During function call array is passed as --> my Numbers; -->  myFunction(myNumbers);
+***************************************************************************************************************
+
+
+A function consist of two parts:
+
+Declaration: the function's name, return type, and parameters (if any)
+Definition: the body of the function (code to be executed)
+For code optimization, it is recommended to separate the declaration and the definition of the function.
+******************************************/
+// Function declaration
+void myFunction();
+
+// The main method
+int main() {
+  myFunction();  // call the function
+  return 0;
+}
+
+// Function definition
+void myFunction() {
+  printf("I just got executed!");
+}
+****************************************/
+
+
+RECURSION:
+
+Recursion is the technique of making a function call itself.
+
+*****************************//
+int sum(int k);
+
+int main() {
+  int result = sum(10);
+  printf("%d", result);
+  return 0;
+}
+
+int sum(int k) {
+  if (k > 0) {
+    return k + sum(k - 1);
+  } else {
+    return 0;
+  }
+}
+//When the sum() function is called, it adds parameter k to the sum of all numbers smaller than k and returns the result. When k becomes 0, the function just returns 0. 
+******************************//
+
+MATH FUNCTIONS:
+
+To use them,include the math.h library --> #include<math.h>
+
+******************************
+to find square root of a no.:
+sqrt();
+printf("%f", sqrt(16));
+******************************
+
+**********************************************
+to round off a number:
+ceil();//rounds a  no. to next higher integer
+floor();//rounds a no. to previous lower integer
+
+printf("%f", ceil(1.4));//2.000000
+printf("%f", floor(1.4));//1.00000
+THEIR RETURN TYPE IS FLOAT
+***********************************************
+
+************************************************************
+to get power of a no. xraised to the power y:
+pow();
+printf("%f", pow(4, 3));//64 --> 4 raised to the power 3
+************************************************************
+abs(x)-->Returns the absolute value of x
+cbrt(s)-->return cube root of x
+
+
+
+STRUCTURES(struct):
+
+Structures (also called structs) are a way to group several related variables into one place. Each variable in the structure is known as a member of the structure.
+
+
+BITWISE OPERATORS:
+
+Operator	Meaning of operator
+&	Bitwise AND operator---------------------- 1&1 only then returns 1
+
+|	Bitwise OR operator------------------------1 at only one place then also returns 1
+
+^	Bitwise exclusive XOR operator---------------
+
+~	One's complement operator (unary operator)
+<<	Left shift operator
+>>	Right shift operator
+****************************************************************************************************************
+getchar() is similar to scanf().
+
+islower() is system defined function under ctype.h header file to check if the character is in lowercase or not.
+*****************
+#include<ctype.h>
+if(islower(ch))
+******************
+
+toupper() converts the input parameter into equivalent uppercase char.
+
+putchar() is similar to printf().
+
+******************************************
+GLOBAL DECLARATION:
+
+#include<stdio.h>
+
+int a,b;
+int main()
+{
+******************************************
+
+Setting decimal precision in C:
+    printf("%0.4f", num); //4 decimal places
+
+
+**********************************************************//
+
+Functions defined under ctype.h library:   pass the arguments in the round brackets(): #include<ctype.h>:
+
+isalpha()- will check if a character is an alphabet or not.
+
+isalnum()-check if character string is alphanumeric(either an alphabet or a number or both). 
+
+isspace()-will check white spaces as well as tabs.
+
+ispunct()-check if a character is a punctuation character or not.
+
+isprint() or isgraph()- will check if a particular character can be printed or not.
+
+************************************************************//
+in switch statement float data type is NOT ALLOWED
+
+******************************************************/
+LEAP YEAR LOGIC:                            *
+if   Year%400==0 --->Leap Year.             *   // not a leap year if divisible by 100 // but not divisible by 400       
+else if   Year%100==0 -->Not Leap Year.     *  
+else if    Year%4==0 -->Leap Year.          * 
+else    Not Leap Year.                      *
+
+ 
+
+CALL BY VALUE: This maked=s no changes:
+#include <stdio.h>
+//CALL BY VALUE--->NO CHANGE IN THE VALUES IN THE MAIN FUNCTION 
+int swap(int a,int b){
+    printf("x=%d y=%d before swap function\n",a,b);//x=5,y=3
+    int temp;
+    temp=a;
+    a=b;
+    b=temp;
+    printf("x=%d y=%d inside swap function\n",a,b);//x=3,y=5
+    return 0;
+}
+int main()
+{
+   int x=5,y=3;
+   swap(x,y);
+   printf("x=%d y=%d inside main after calling",x,y);//x=5,y=3 ---->No Swapping occurred
+
+    return 0;
+}
+
+
+CALL BY REFERENCE:
+
+#include <stdio.h>
+//CALL BY REFERENCE
+int swap(int *a,int *b){
+    printf("x=%d y=%d before swap function\n",*a,*b);//x=5 y=3
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
+    printf("x=%d y=%d inside swap function\n",*a,*b);//x=3 y=5 
+    return 0;
+}
+int main()
+{
+   int x=5,y=3;
+   swap(&x,&y);
+   printf("x=%d y=%d inside main after calling",x,y);//x=3 y=5
+
+    return 0;
+}
+Call by reference is used when we want changes to be done in the values in the main function also.
+
+
+POINTER ARITHMETIC:
+
+INCREMENT and DECREMENT can be done in pointers.
+int age=22;
+int *ptr=&age;
+ptr++;// 4 bytes added
+printf("%u",ptr);//2000
+ptr--;
+printf("%u",ptr);//1996
+MATLAB DATA TYPE KA JITNA SIZE HOTA HAI UTNA HI ADD YA SUBTRACT HO JAAYEGA.
+
+
+WE CAN ALSO SUBTRACT 2 POINTERS:
+
+int age=22,_age=23;
+int *ptr=&age;
+int *ptr=&_age;
+printf("ptr-_ptr")//1 i.e. the exact(absolute) difference between the values.
+//////////////////////////////////////////////******************************
+
+
+
+ARRAY IS A POINTER:
+int *ptr=&arr[0];
+       OR             //both will access the 0th position of the array
+int *ptr=arr;
+
+////////////////////////*******************************************
+Array as a function argument:
+During Function Definition -->   void func(int arr[])
+                            OR
+                                void func(int *arr)
+
+During Function Call-->    func(arr);
+
+
+IF ARRAY IS PASSED IN A FUNCTION ---> CALL BY REFERENCE
+
+
+RECURSION:
+The recursion continues until some condition is met to prevent it.
+
+
+
+
+
+
